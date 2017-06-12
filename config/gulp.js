@@ -41,6 +41,11 @@ const config = {
     outputPath: path.join(__dirname, '../dist/images'),
     watchPath: 'src/assets/images/**/*',
   },
+  fonts: {
+    inputPath: 'src/assets/fonts/**/*',
+    outputPath: path.join(__dirname, '../dist/fonts'),
+    watchPath: 'src/assets/fonts/**/*',
+  },
 };
 
 module.exports = config;

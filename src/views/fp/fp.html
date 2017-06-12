@@ -1,5 +1,5 @@
 @@include('../base/head.html', {
-  "style": "/stylesheets/home/index.css"
+  "style": "/stylesheets/fp/index.css"
 })
 <body>
   @@include('../../components/header/header.html')
@@ -7,11 +7,12 @@
  
 	<!-- include page content here -->
   
-  @@include('../../components/slider/index.html', {
-		"slider": ["1", "2", "3", "4", "5", "6"]
+	@@include('../../components/slider/index.html', {
+		"slider": ["fp1", "fp2", "fp3", "fp4", "fp5"]
 	})
+  
   @@include('../../components/footer/footer.html',{
-    "js": "home"
+    "js": "fp"
   })
   
 </body>

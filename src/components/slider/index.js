@@ -1,7 +1,11 @@
 'use strict';
 
+import $ from 'jquery';
+import slick from 'slick-carousel';
+
 export default {
-  init() {
+  init(params) {
+	$('.slider').slick(params);
     console.info('Component Slider init');
   },
 };

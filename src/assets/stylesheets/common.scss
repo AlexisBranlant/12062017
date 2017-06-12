@@ -1,6 +1,8 @@
 $baseFont: "Lucida Grande", Helvetica, Arial, sans-serif;
-@import "shared/_colors.scss";
-@import "icons/icons.scss";
+@import "shared/_colors";
+@import "icons/icons";
+
+@import "../../components/slider/_index";
 
 body {
   font-family: $baseFont;
