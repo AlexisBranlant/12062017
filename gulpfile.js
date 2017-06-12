@@ -21,7 +21,7 @@ gulp.task('templates', tasks.templates);
 gulp.task('images', tasks.images);
 
 gulp.task('default', ['server', 'build', 'watch']);
-gulp.task('build', ['templates']);
+gulp.task('build', ['templates','icons','stylesheets','scripts','images']);
 
 gulp.task('watch', function() {
   gulp.watch(config.stylesheets.watchPath, ['stylesheets']);

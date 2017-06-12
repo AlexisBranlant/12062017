@@ -31,6 +31,7 @@ module.exports = function(config) {
         prefix: '@@',
         basepath: '@file'
       }))
+      .pipe(flatten())
       .pipe(gulp.dest(config.outputPath))
       .pipe( notify({ message: "fileInclude tasks have been completed!"}) )
       .pipe(wait(500))
