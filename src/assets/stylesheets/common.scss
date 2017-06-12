@@ -1,0 +1,15 @@
+$baseFont: "Lucida Grande", Helvetica, Arial, sans-serif;
+@import "shared/_colors.scss";
+@import "icons/icons.scss";
+
+body {
+  font-family: $baseFont;
+  font-size: 14px;
+  color: red;
+  padding: 50px;
+}
+
+a {
+  color: $linkColor;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,37 @@
+.MainNav {
+  display: block;
+  width: 50%;
+}
+  .MainNav-list {
+    display: block;
+    width: 50%;
+    padding: 10px;
+  }
+    .MainNav-listItem {
+
+      @include desktop {
+
+      }
+      @include tablet {
+
+      }
+      @include mobile {
+
+      }
+    }
+      .MainNav-listLink {
+
+      }
+      .MainNav-listLink--active{
+
+      }
+      .MainNav-underList {
+
+      }
+        .MainNav-underListItem {
+
+        }
+          .MainNav-underListLink {
+
+          }
+

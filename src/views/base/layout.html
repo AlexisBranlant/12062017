@@ -1,0 +1,15 @@
+@@include('head.html', {
+  "style": "chemin_vers_css"
+})
+<body>
+  @@include('../../components/header/header.html')
+
+  <!-- include page content here -->
+
+  @@include('../../components/footer/footer.html')
+
+  <script src="/javascripts/common.bundle.js"></script>
+  <!-- rename "page" by the page name ex : "home.bundle.js" -->
+  <script src="/javascripts/page.bundle.js"></script>
+</body>
+</html>

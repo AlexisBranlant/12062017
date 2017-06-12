@@ -1,0 +1,14 @@
+@@include('../base/head.html', {
+  "style": "/stylesheets/home/index.css"
+})
+<body>
+  @@include('../../components/header/header.html')
+
+  <!-- include page content here -->
+
+  @@include('../../components/nav/nav.html')
+  @@include('../../components/footer/footer.html',{
+    "js": "home"
+  })
+</body>
+</html>

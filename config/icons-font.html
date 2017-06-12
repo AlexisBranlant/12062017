@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Icons font</title>
+
+  <style>
+    .container {
+      max-width: 960px;
+      text-align: center;
+      margin: 10px auto;
+    }
+
+    .item {
+      font-size: 32px;
+      display: inline-block;
+      margin-right: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .item-title {
+      font-size: 16px;
+      font-family: Helvetica;
+      display: block;
+    }
+
+    @font-face {
+      font-family: "<%= fontName %>";
+      <% if(_.indexOf(fontFormats, 'eot') !== -1) { %>
+      src: url('<%= exempleCssPath + '/' + fontName %>.eot'); /* IE9 Compat Modes */
+        src: url('<%= exempleCssPath + '/' + fontName %>.eot?#iefix') format('eot'), /* IE6-IE8 */
+      <% } else { %>
+           src:
+           <% } %>
+      <% if(_.indexOf(fontFormats, 'woff2') !== -1) { %>url('<%= exempleCssPath +  '/' + fontName %>.woff2') format('woff2'), /* Super Modern Browsers */<% } %>
+      <% if(_.indexOf(fontFormats, 'woff') !== -1)  { %>url('<%= exempleCssPath +  '/' + fontName %>.woff') format('woff'), /* Pretty Modern Browsers */<% } %>
+      <% if(_.indexOf(fontFormats, 'ttf') !== -1)   { %>url('<%= exempleCssPath +  '/' + fontName %>.ttf') format('ttf'); /* Safari, Android, iOS */<% } %>
+      /*<% if(_.indexOf(fontFormats, 'svg') !== -1)   { %>url('<%= exempleCssPath +  '/' + fontName %>.svg#<%= fontName %>') format('svg');<% } %>*/
+    }
+
+    .Icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .Icon:before {
+      font-family: "<%= fontName %>";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-style: normal;
+      font-variant: normal;
+      line-height: 1;
+      font-weight: normal;
+      text-decoration: none;
+      text-transform: none;
+    }
+
+    <% _.each(glyphs, function(glyph) { %>
+    .Icon--<%= glyph.name %>:before {
+      content: "\<%= glyph.codepoint.toString(16).toUpperCase() %>";  }
+    <% }) %>
+
+    .banner {
+      display: none;
+      background: #40d47e;
+      color: white;
+      font-size: 26px;
+      font-family: Helvetica;
+      padding: 10px 0;
+    }
+    .banner--visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="banner"></div>
+    <h1>Icon</h1>
+
+    <% _.each(glyphs, function(glyph) { %>
+      <div class="item">
+        <i class="Icon Icon--<%= glyph.name %>"></i>
+        <strong class="item-title">
+          Icon--<%= glyph.name %>
+        </strong>
+      </div>
+    <% }) %>
+  </div>
+
+
+  <script>
+    (function() {
+      'use strict';
+
+      const icons = document.querySelectorAll('.item');
+      const banner = document.querySelector('.banner');
+
+      [].forEach.call(icons, icon => {
+        icon.addEventListener('click', function(e) {
+          window.getSelection().removeAllRanges();
+          var value = icon.querySelector('.item-title');
+          var range = document.createRange();
+
+          range.selectNode(value);
+          window.getSelection().addRange(range);
+
+          try {
+            var successful = document.execCommand('copy');
+
+            if (successful) {
+              banner.classList.add('banner--visible');
+              banner.innerHTML = "Copié ! "+ value.innerText;
+
+              setTimeout(() => {
+                banner.classList.remove('banner--visible');
+              }, 1500);
+            }
+          }
+          catch(err) {
+            alert('Oups, unable to copy')
+          }
+
+          window.getSelection().removeAllRanges();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

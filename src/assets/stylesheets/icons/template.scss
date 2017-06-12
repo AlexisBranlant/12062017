@@ -1,0 +1,88 @@
+$include-html-icons-classes: false !default;
+$prefix: '' !default;
+
+
+@if($include-html-icons-classes) {
+  @font-face {
+    font-family: "<%= fontName %>";
+  <% if(_.indexOf(fontFormats, 'eot') !== -1) { %>
+  src: url('<%= cssPath + '/' + fontName %>.eot'); /* IE9 Compat Modes */
+    src: url('<%= cssPath + '/' + fontName %>.eot?#iefix') format('eot'), /* IE6-IE8 */
+    <% } else { %>
+  src:
+         <% } %>
+  <% if(_.indexOf(fontFormats, 'woff2') !== -1) { %>url('<%= cssPath +  '/' + fontName %>.woff2') format('woff2'), /* Super Modern Browsers */<% } %>
+  <% if(_.indexOf(fontFormats, 'woff') !== -1)  { %>url('<%= cssPath +  '/' + fontName %>.woff') format('woff'), /* Pretty Modern Browsers */<% } %>
+  <% if(_.indexOf(fontFormats, 'ttf') !== -1)   { %>url('<%= cssPath +  '/' + fontName %>.ttf') format('ttf'); /* Safari, Android, iOS */<% } %>
+  //<% if(_.indexOf(fontFormats, 'svg') !== -1)   { %>url('<%= cssPath +  '/' + fontName %>.svg#<%= fontName %>') format('svg'); /* Legacy iOS */<% } %>
+  }
+}
+
+@mixin icon-base() {
+  font-family: "<%= fontName %>";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+  text-decoration: none;
+  text-transform: none;
+
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  font-size: 1em;
+}
+
+%icon-base {
+  @include icon-base();
+}
+
+.#{$prefix}Icon {
+  @extend %icon-base;
+}
+
+@function icon-char($filename) {
+  $char: "";
+
+<% _.each(glyphs, function(glyph) { %>
+@if $filename == <%= glyph.name %> {
+$char: "\<%= glyph.codepoint %>";
+}<% }); %>
+
+@return $char;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+  @if $insert == before or $insert == after {
+    &:#{$insert} {
+      @if $extend == true {
+        @extend %icon-base;
+      } @else {
+        @include icon-base();
+      }
+      @if $filename != false {
+        content: icon-char($filename);
+      }
+    }
+  } @else {
+    @if $extend == true {
+      @extend %icon-base;
+    } @else {
+      @include icon-base();
+    }
+    @if $filename != false {
+      content: icon-char($filename);
+    }
+  }
+
+}
+@if($include-html-icons-classes) {
+<% _.each(glyphs, function(glyph) { %>
+.#{$prefix}<%= glyph.name %> {@include icon(<%= glyph.name %>);}
+<% }); %>
+
+}

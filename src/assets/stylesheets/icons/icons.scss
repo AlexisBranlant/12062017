@@ -1,0 +1,91 @@
+$include-html-icons-classes: false !default;
+$prefix: '' !default;
+
+
+@if($include-html-icons-classes) {
+  @font-face {
+    font-family: "icons";
+  
+  src: url('/fonts/icons.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/icons.eot?#iefix') format('eot'), /* IE6-IE8 */
+    
+  url('/fonts/icons.woff2') format('woff2'), /* Super Modern Browsers */
+  url('/fonts/icons.woff') format('woff'), /* Pretty Modern Browsers */
+  url('/fonts/icons.ttf') format('ttf'); /* Safari, Android, iOS */
+  //
+  }
+}
+
+@mixin icon-base() {
+  font-family: "icons";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+  text-decoration: none;
+  text-transform: none;
+
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  font-size: 1em;
+}
+
+%icon-base {
+  @include icon-base();
+}
+
+.#{$prefix}Icon {
+  @extend %icon-base;
+}
+
+@function icon-char($filename) {
+  $char: "";
+
+
+@if $filename == burger {
+$char: "\59905";
+}
+@if $filename == hoot {
+$char: "\59906";
+}
+
+@return $char;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+  @if $insert == before or $insert == after {
+    &:#{$insert} {
+      @if $extend == true {
+        @extend %icon-base;
+      } @else {
+        @include icon-base();
+      }
+      @if $filename != false {
+        content: icon-char($filename);
+      }
+    }
+  } @else {
+    @if $extend == true {
+      @extend %icon-base;
+    } @else {
+      @include icon-base();
+    }
+    @if $filename != false {
+      content: icon-char($filename);
+    }
+  }
+
+}
+@if($include-html-icons-classes) {
+
+.#{$prefix}burger {@include icon(burger);}
+
+.#{$prefix}hoot {@include icon(hoot);}
+
+
+}
