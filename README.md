@@ -19,8 +19,6 @@ Pack de démarrage pour une solution statique. Le site est généré dans un dis
 - utils : fonction JS et/ou classes CSS à but principalement utilitaire
 - views : pages du site
 
-**Note importante :** les pages twig doivent être nommés en fonction de celle-ci (example.twig pour `/example.html`)
-
 ## Compatibilité navigateurs
 
 Ce boilerplate utilise [autoprefixer](https://github.com/postcss/autoprefixer) qui lit le fichier `browserlist` à la racine.
@@ -33,9 +31,9 @@ Par défaut, il est configuré sur IE8+. Vous pouvez retrouver les différentes 
 Permet un meilleur support et une possibilité de ré-utilisation
 Un composant peut comporter :
 
-- index.twig
+- index.html
 - index.js
-- index.css
+- index.scss
 
 ## Chemin import
 
